@@ -1,7 +1,7 @@
 local component = require('component')
 local event = require('event')
-local colors = require('myColors')
-local try = require("try")
+local colors = require('src.constants.myColors')
+local try = require('src.util.try')
 
 local gpu = component.gpu
 
