@@ -1,4 +1,4 @@
-
+package.path = package.path .. ';/home/lib/arklib/'
 return {
     util = {
         try = require('src.util.try')
