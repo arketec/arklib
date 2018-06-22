@@ -11,5 +11,8 @@ return {
         bars = require('src.ui.bars'),
         input = require('src.ui.input'),
         window = require('src.ui.window')
+    },
+    text = {
+        letters = require('src.text.letters')
     }
 }
