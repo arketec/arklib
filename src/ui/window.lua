@@ -22,9 +22,9 @@ local function printGrid(win)
     local nextColor = colors.blue
     iterateGrid(win.grid, 
         function(_,_, row)
-            if (nextColor == colors.blue) then
+            if (nextColor == colors.blue and row.Width ~= 0) then
                 nextColor = colors.white
-            else
+            elseif (row.Width ~= 0) then
                 nextColor = colors.blue
             end
             gpu.setBackground(nextColor)
@@ -128,6 +128,23 @@ function Window:shapeGrid(gridShape)
             end
         end
     )
+end
+
+function Window:mergeCells(cell1,cell2)
+    local c1 = self.grid[cell1.Y][cell1.X]
+    local c2 = self.grid[cell2.Y][cell2.X]
+    if (c1.X ~= c2.X) then
+        c1.Width = c1.Width + c2.Width
+        c2.Width = 0
+    end
+
+    if (c1.Y ~= c2.Y) then
+        c1.Height = c1.Height + c2.Height;
+        c2.Height = 0
+    end
+    
+    self.grid[cell1.Y][cell1.X] = c1
+    self.grid[cell2.Y][cell2.X] = c2
 end
 
 function window.new()
