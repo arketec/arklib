@@ -47,7 +47,7 @@ function Window:create(options)
     self.config = {
         showGrid = false
     }
-    if (options.config.showGrid ~= nil) then
+    if (options.config ~= nil and options.config.showGrid ~= nil) then
         self.config.showGrid = options.config.showGrid
     end
 
