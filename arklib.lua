@@ -13,6 +13,7 @@ return {
         window = require('src.ui.window')
     },
     text = {
-        letters = require('src.text.letters')
+        letters = require('src.text.letters'),
+        large = require('src.text.large')
     }
 }
