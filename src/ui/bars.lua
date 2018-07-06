@@ -62,4 +62,4 @@ function bars.new()
 end
 
 
-return button
+return bars
