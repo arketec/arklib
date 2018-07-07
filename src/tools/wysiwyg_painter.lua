@@ -10,23 +10,12 @@ local painter = {}
 local Painter = {}
 
 function Painter:create(coords, color, updateFunction, errorHandler)
-
-end
-
-function Painter:draw()
-    -- store current colors
-    local lastBgColor = gpu.getBackground()
-
-    -- set button color and fill
-    gpu.setBackground(self.color)
-    gpu.fill(self.coords.xStart, self.coords.yStart - self.coords.height, self.coords.width, self.coords.height, ' ')
-
-    -- return bg color to previous
-    gpu.setBackground(lastBgColor)
-end
-
-function Painter:update(...)
-
+    event.listen('touch', function(_,_,x,y)
+        local lastBgColor = gpu.getBackground()
+        gpu.setBackground(color)
+        gpu.fill(x, y, 1, 1, ' ')
+        gpu.setBackground(lastBgColor)
+    end)
 end
 
 

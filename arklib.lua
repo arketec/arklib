@@ -6,6 +6,9 @@ return {
     constants = {
         colors = require('src.constants.myColors'),
     },
+    tools = {
+        painter = require('src.tools.wysiwyg_painter')
+    },
     ui = {
         button = require('src.ui.button'),
         bars = require('src.ui.bars'),
