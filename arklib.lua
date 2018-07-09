@@ -22,5 +22,13 @@ return {
     text = {
         letters = require('src.text.letters'),
         large = require('src.text.large')
+    },
+    apps = {
+        menu = require('apps.menu')
+    },
+    assets = {
+        menu = {
+            craftables = require('assets.menu.craftables')
+        }
     }
 }
