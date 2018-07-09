@@ -80,17 +80,22 @@ end
 
 function Window:add(element, ...)
     local elemI = 1
-    local args = {...}
-    iterateGrid(self.grid, 
-        function(_,_,row)   
-            if (row.element == nil) then
-                element:create({xStart = row.X, yStart = row.Y, width = row.Width, height = row.Height}, table.unpack(args))
-                row.element = element
-                return
+
+    if (element == nil) then
+        elemI = elemI + 1
+    else
+        local args = {...}
+        iterateGrid(self.grid, 
+            function(_,_,row)   
+                if (row.element == nil) then
+                    element:create({xStart = row.X, yStart = row.Y, width = row.Width, height = row.Height}, table.unpack(args))
+                    row.element = element
+                    return
+                end
+                elemI = elemI + 1
             end
-            elemI = elemI + 1
-        end
-    )
+        )
+    end
     self.elements[elemI] = element
 end
 

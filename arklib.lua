@@ -9,6 +9,10 @@ return {
     tools = {
         painter = require('src.tools.wysiwyg_painter')
     },
+    networking = {
+        server = require('src.networking.server'),
+        client = require('src.networking.client')
+    },
     ui = {
         button = require('src.ui.button'),
         bars = require('src.ui.bars'),

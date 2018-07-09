@@ -14,29 +14,20 @@ function Server:create(port, address, errorHandler)
     if (address) then
         self.address = address
     end
-    if (modem.open(port)) then
-        print('Broadcasting on port at: ' .. port)
-    else
-        print('Failed to open port: ' .. port)
-        if (errorHandler) then
-            errorHandler()
-        end
-    end
 end
 
-function Server:broadcast(...)
-    local args = {...}
-    for i,v in ipairs(arg) do
-        if (type(v) == 'table') then
-            args[i] = ser.serialize(v)
+function Server:broadcast(message)
+        local msg = message
+        if (type(message) == 'table') then
+            msg = ser.serialize(message)
         end
-    end
-    mode.broadcast(self.port, table.unpack(args))
+    
+    modem.broadcast(self.port, msg)
 end
 
 function Server:send(...)
     if (self.address) then
-        mode.broadcast(self.address, self.port, ...)
+        modem.broadcast(self.address, self.port, ...)
     else
         print('Cannot send. No address')
     end
