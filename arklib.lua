@@ -1,7 +1,9 @@
 package.path = package.path .. ';/home/lib/arklib/'
 return {
     util = {
-        try = require('src.util.try')
+        try = require('src.util.try'),
+        file = require('src.util.file'),
+        string = require('src.util.string')
     },
     constants = {
         colors = require('src.constants.myColors'),
@@ -22,13 +24,5 @@ return {
     text = {
         letters = require('src.text.letters'),
         large = require('src.text.large')
-    },
-    apps = {
-        menu = require('apps.menu')
-    },
-    assets = {
-        menu = {
-            craftables = require('assets.menu.craftables')
-        }
     }
 }

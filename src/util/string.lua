@@ -1,5 +1,12 @@
-local string_util = {}
+return {
+    split = function(text, delimiter)
+        local r = {}
+        local index = 1
+        for i in string.gmatch(text, '[^' .. delimiter .. ']+' ) do
+            r[index] = i
+            index = index + 1
+        end
+        return r
+    end
+}
 
-function string_util.split(text, delimiter)
-    return string.gmatch(text, '%' .. delimiter .. '+' )
-end
