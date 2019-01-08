@@ -3,7 +3,7 @@ local component = require('component')
 local modem = component.modem
 local gpu = component.gpu
 
--- =======DEBUG ============
+-- ======= DEBUG ============
 local debugMode = true
 -- =========================
 
