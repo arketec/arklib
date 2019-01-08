@@ -38,4 +38,6 @@ layout:setPosition(2, 3, layout:addChild(GUI.button(1, 1, 26, 3, 0xEEEEEE, 0x000
 local app = GUI.application()
 app:addChild(GUI.panel(1, 1, application.width, application.height, 0x2D2D2D))
 app:addChild(layout)
+
+application:draw(true)
 app:start()
