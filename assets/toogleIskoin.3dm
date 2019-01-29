@@ -1,0 +1,54 @@
+{
+  label = "I$Koin",
+  tooltip = "Recession Resistance X",
+  lightLevel = 8,
+  shapes={
+    {6,1,7,10,2,8,texture="emerald_block"},
+    {5,2,7,11,3,8,texture="emerald_block"},
+    {4,3,7,7,5,8,texture="emerald_block"},
+    {7,3,7,8,5,8,texture="storage_nether_star"},
+    {8,3,7,12,5,8,texture="emerald_block"},
+    {4,5,7,7,8,8,texture="emerald_block"},
+    {7,5,7,8,8,8,texture="block_crystal_green"},
+    {8,5,7,12,8,8,texture="emerald_block"},
+    {5,8,7,11,10,8,texture="emerald_block"},
+    {6,10,7,10,12,8,texture="emerald_block"},
+
+    {6,2,8,10,3,9,texture="gold_block"},
+    {7,3,8,9,5,9,texture="gold_block"},
+    {7,5,8,9,8,9,texture="gold_block"},
+    {7,8,8,9,10,9,texture="gold_block"},
+    {6,10,8,10,11,9,texture="gold_block"},
+
+    {6,2,6,10,3,7,texture="gold_block"},
+    {7,3,6,9,5,7,texture="gold_block"},
+    {7,5,6,9,8,7,texture="gold_block"},
+    {7,8,6,9,10,7,texture="gold_block"},
+    {6,10,6,10,11,7,texture="gold_block"},
+
+    
+
+    {6,1,14,10,2,15,texture="emerald_block", state = true},
+    {5,2,14,11,3,15,texture="emerald_block", state = true},
+    {4,3,14,7,5,15,texture="emerald_block", state = true},
+    {7,3,14,8,5,15,texture="storage_nether_star", state = true},
+    {8,3,14,12,5,15,texture="emerald_block", state = true},
+    {4,5,14,7,8,15,texture="emerald_block", state = true},
+    {7,5,14,8,8,15,texture="block_crystal_green", state = true},
+    {8,5,14,12,8,15,texture="emerald_block", state = true},
+    {5,8,14,11,10,15,texture="emerald_block", state = true},
+    {6,10,14,10,12,15,texture="emerald_block", state = true},
+
+    {6,2,15,10,3,16,texture="gold_block", state = true},
+    {7,3,15,9,5,16,texture="gold_block", state = true},
+    {7,5,15,9,8,16,texture="gold_block", state = true},
+    {7,8,15,9,10,16,texture="gold_block", state = true},
+    {6,10,15,10,11,16,texture="gold_block", state = true},
+
+    {6,2,13,10,3,14,texture="gold_block", state = true},
+    {7,3,13,9,5,14,texture="gold_block", state = true},
+    {7,5,13,9,8,14,texture="gold_block", state = true},
+    {7,8,13,9,10,14,texture="gold_block", state = true},
+    {6,10,13,10,11,14,texture="gold_block", state = true}
+  }
+}

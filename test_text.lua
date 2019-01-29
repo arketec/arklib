@@ -1,2 +1,4 @@
 local lib = require('arklib')
-lib.text.letters.medium.A()
+local large = lib.text.large
+local l = large.new()
+l:print('A')

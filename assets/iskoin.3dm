@@ -1,0 +1,28 @@
+{
+  label = "I$Koin",
+  tooltip = "Recession Resistance X",
+  shapes={
+    {6,1,7,10,2,8,texture="emerald_block"},
+    {5,2,7,11,3,8,texture="emerald_block"},
+    {4,3,7,7,5,8,texture="emerald_block"},
+    {7,3,7,8,5,8,texture="storage_nether_star"},
+    {8,3,7,12,5,8,texture="emerald_block"},
+    {4,5,7,7,8,8,texture="emerald_block"},
+    {7,5,7,8,8,8,texture="block_crystal_green"},
+    {8,5,7,12,8,8,texture="emerald_block"},
+    {5,8,7,11,10,8,texture="emerald_block"},
+    {6,10,7,10,12,8,texture="emerald_block"},
+
+    {6,2,8,10,3,9,texture="gold_block"},
+    {7,3,8,9,5,9,texture="gold_block"},
+    {7,5,8,9,8,9,texture="gold_block"},
+    {7,8,8,9,10,9,texture="gold_block"},
+    {6,10,8,10,11,9,texture="gold_block"},
+
+    {6,2,6,10,3,7,texture="gold_block"},
+    {7,3,6,9,5,7,texture="gold_block"},
+    {7,5,6,9,8,7,texture="gold_block"},
+    {7,8,6,9,10,7,texture="gold_block"},
+    {6,10,6,10,11,7,texture="gold_block"}
+  }
+}

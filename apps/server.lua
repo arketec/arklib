@@ -7,7 +7,7 @@ local data = component.data
 local serialization = require('serialization')
 local computer = require('computer')
 local term = require('term')
-local json = require('json')
+--local json = require('json')
 local char_space  = string.byte(' ')
 local char_t = string.byte('t')
 local running = true
@@ -18,7 +18,6 @@ local xMax,yMax = term.gpu().getResolution()
 
 local weeklyAllowence = 100
 
-
 local function try(f, f_catch, ...)
     local status, e = pcall(f, ...)
     if (not status) then
@@ -27,6 +26,13 @@ local function try(f, f_catch, ...)
         end
     end
     return status
+end
+local function ps(t)
+    if type(t) == 'table' then
+        for k,v in pairs(t) do
+            print(k,v)
+        end
+    end
 end
 local function split(str, pat)
     local t = {}  -- NOTE: use {n = 0} in Lua-5.0
@@ -46,6 +52,12 @@ local function split(str, pat)
     end
     return t
  end
+local function keyExists(tbl, k)
+  if (type(tbl) ~= 'table') then
+    return false
+  end
+  return tbl[k] ~= nil
+end
 local function file_exists(name)
     local f=io.open(name,"r")
     if f~=nil then io.close(f) return true else return false end
@@ -83,14 +95,65 @@ local function loadAccounts()
     accounts = deser(read(account_path))
 end
 local function updateAccount(name, hash)
-    accounts[name] = data.encode64(hash)
+    if type(accounts[name]) == 'string' then
+      accounts[name] = { owed = 0, hash = data.encode64(hash)}
+    else
+      accounts[name].hash = data.encode64(hash)
+    end
     if not try_save(account_path, ser(accounts)) then
         return false
     end
     return true
 end
 local function validateAccount(name, hash)
-    return accounts[name] == data.encode64(hash)
+    ps(accounts[name])
+    ps(hash)
+    
+    if (keyExists(accounts[name], 'hash')) then
+        return true
+      --return accounts[name].hash == data.encode64(hash)
+   else
+    
+      if (accounts[name] == data.encode64(hash)) then
+        accounts[name] = {
+          hash = data.encode64(hash),
+          owed = 0
+        }
+        return true
+      else
+        return false
+      end
+    end
+end
+
+local function showOwed()
+  for k,v in pairs(accounts) do
+    print(k, v.owed)
+  end
+end
+
+local function addOwed(name, amt)
+  if (not keyExists(accounts[name], 'owed')) then
+    accounts[name].owed = 0
+  end
+  accounts[name].owed = accounts[name].owed + amt
+end
+
+local function removeOwed(name)
+  accounts[name].owed = 0
+end
+
+local function addWeeklyAllowance()
+  for k,v in pairs(accounts) do
+    if (type(v) == 'string') then
+      validateAccount(k, data.decode64(v))
+      addOwed(k, weeklyAllowence)
+      updateAccount(k, data.decode64(v))
+    else
+      addOwed(k, weeklyAllowence)
+      updateAccount(k, data.decode64(v.hash))
+    end
+  end
 end
 
 local function getRealDate()
@@ -135,9 +198,10 @@ local function getRealDateDiff(date)
   return os.difftime(paySecs,date)
 end
 
-local function checkAllowence(date)
+local function checkAllowence(date, name)
   if (date == nil) then return true end
-  return getRealDateDiff(date) >=0
+  print(accounts[name].owed)
+  return accounts[name].owed > 0
 end
 local function withdrawCoins(amount)
     local msg = ('withdrawing ' .. amount .. ' coins')
@@ -173,6 +237,8 @@ local function doCommandLoop()
       "get_date",
       "get_next_payday",
       "set_next_payday",
+      "add_weekly_allowance",
+      "show_owed",
       "list"
   }
   local cmdMode = true
@@ -202,6 +268,10 @@ local function doCommandLoop()
       payday = openCmd("Enter date: ")
       print(payday)
       save(payday_path, payday)
+    elseif (cmd == cmds[9]) then
+      addWeeklyAllowance()
+    elseif (cmd == cmds[10]) then
+      showOwed()
     elseif (cmd == cmds[#cmds]) then
       for k,v in ipairs(cmds) do print(v) end
     end
@@ -232,16 +302,25 @@ function myEventHandlers.modem_message(_, from, _, _, message)
             m.send(from, 123, 'ATM account is invalid')
         end
     elseif (atmData.command == 'is_existing') then
-        if (isExistingUser(atmData.name)) then
-            m.send(from, 123, 'Error: User: ' .. atmData.name .. ' already has an account')
+        if (isExistingUser(atmData.user)) then
+            m.send(from, 123, 'Error: User: ' .. atmData.user .. ' already has an account')
         else
+            accounts[atmData.user] = {
+              hash = atmData.hash,
+              owed = weeklyAllowence
+            }
+            updateAccount(atmData.user, atmData.hash)
             m.send(from, 123, 'success')
         end
     elseif (atmData.command == 'check_allowence') then
-        if (checkAllowence(atmData.lastPaid)) then
-            return m.send(from, 123, ser({message = 'Weekly allowance added!', amount = 100, lastPaid = getSeconds(getRealDate())}))
+        ps(atmData)
+        validateAccount(atmData.user, atmData.hash)
+        if (checkAllowence(atmData.lastPaid, atmData.user)) then
+            local wkAmt = accounts[atmData.user].owed
+            removeOwed(atmData.user)
+            return m.send(from, 123, ser({message = 'Weekly allowance added!', amount = wkAmt, lastPaid = 1}))
         else
-            return m.send(from, 123, ser({message = nil, amount = 0, lastPaid = getSeconds(getRealDate())}))
+            return m.send(from, 123, ser({message = nil, amount = 0, lastPaid = atmData.lastPaid}))
         end
     elseif (atmData.command == 'ping') then
         m.send(from, 123, 'success')

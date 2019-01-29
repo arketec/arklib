@@ -1,0 +1,42 @@
+{
+	Arketec = {
+		hash = "VwskFfQaUp99/SJWa2ptz3sE7QoE7JJO6R4dJCPk+C8=",
+		owed = 0
+	}, ridger = {
+		hash = "4iBDgJR9MvDM4fwmOTpV07mctj0tHCC+SwKjWR48fdQ=",
+		owed = 0
+	}, Lou9896 = {
+		hash = "gZm3WuhNxiq2fKmz36c6MEb650Vou7KUZzAwX5wdE3k=",
+		owed = 0
+	}, DisgustingBanana = {
+		hash = "jZ5OutIvpD2XqQE+TXBTICQIq7o2D5x5hM7fJyvFndM=",
+		owed = 0
+	}, coaster99 = {
+		hash = "3L0f6epi1837+aSZo7uBMYtDqbFvELYjGiFtkHGBQNc=",
+		owed = 0
+	}, TaMp_TooL = {
+		hash = "aGzeC0f1uZ4lRAkXbBs5a7xnJb0fJa6yhlbGRk0cmDs=",
+		owed = 100
+	}, Grimmorris = {
+		hash = "l3ejOCh6nBAJk/c15AHujV9/mL/6qENHKzBJ4TpgcL8=",
+		owed = 100
+	}, Marxassassin = {
+		hash = "E64XvHP+OhN4MoPNwfyFUimrmrvtCaWet50w+9k54GM=",
+		owed = 0
+	}, GamingwithSpace = {
+		hash = "ZybwvbYwsdzaWe5qxqouTMeXI8u1eXq+XuTZuWIEJoc=",
+		owed = 100
+	}, FameWolf = {
+		hash = "WGxRTbSAz4D5jR6qq4b7pvj7J4n5P627XUxOpwzKUkk=",
+		owed = 100
+	}, ToxicMoss_94 = {
+		hash = "6g21Tb1BCMvBrNm5i79Vzica6lM2LaUm8GjNek8P9L8=",
+		owed = 100
+	}, spiderfastxd = {
+		hash = "",
+		owed = 100
+	}, sloppie = {
+		hash = "",
+		owed = 200
+	}
+}
